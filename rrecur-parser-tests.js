@@ -1,10 +1,8 @@
 /* ----------------------------------------------------------------------------
-	 	Testing case of scheduler.js inspired from
+	 	Testing case of rrecur-parser.js inspired from
 			http://www.kanzaki.com/docs/ical/rrule.html
 
-		requirement : date.js
-
-		date : sept 14 2011
+		date : dec 14 2011
 
  ---------------------------------------------------------------------------- */
 
