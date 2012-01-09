@@ -1,8 +1,8 @@
 /* ----------------------------------------------------------------------------
-	 	Testing case of rrecur-parser.js inspired from
+	 	Testing case of scheduler.js inspired from
 			http://www.kanzaki.com/docs/ical/rrule.html
 
-		date : dec 14 2011
+		date : jan 09 2012
 
  ---------------------------------------------------------------------------- */
 
@@ -803,3 +803,16 @@ console.assert(occurrences.in_array(new Date(1997, 7, 17, 9).getTime()));
 console.assert(occurrences.in_array(new Date(1997, 7, 19, 9).getTime()));
 console.assert(occurrences.in_array(new Date(1997, 7, 31, 9).getTime()));
 //              ==> (1997 EDT)August 5,17,19,31
+
+
+console.log("--- Birthday ---");
+d = new Date(2011, 0, 1);
+start_at = new Date(2011, 0, 1);
+end_at = new Date(2014, 0, 1);
+scheduler = new Scheduler(d, "FREQ=YEARLY;INTERVAL=1", true);
+occurrences = scheduler.occurrences_between(start_at, end_at);
+console.assert(occurrences.length == 4);
+console.assert(occurrences[0] == new Date(2011, 0, 1).getTime());
+console.assert(occurrences[1] == new Date(2012, 0, 1).getTime());
+console.assert(occurrences[2] == new Date(2013, 0, 1).getTime());
+console.assert(occurrences[3] == new Date(2014, 0, 1).getTime());

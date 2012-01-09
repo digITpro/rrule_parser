@@ -1,3 +1,28 @@
+// used for IE < 9
+// adapted from https://developer.mozilla.org/en/JavaScript/Reference/Global_Objects/Array/indexOf
+if (!Array.prototype.indexOf)
+{
+	Array.prototype.indexOf = function(elt /*, from*/)
+	{
+		var len = this.length >>> 0;
+
+		var from = Number(arguments[1]) || 0;
+		from = (from < 0)
+			? Math.ceil(from)
+			: Math.floor(from);
+		if (from < 0)
+			from += len;
+
+		for (; from < len; from++)
+		{
+			if (from in this &&
+				this[from] === elt)
+				return from;
+		}
+		return -1;
+	};
+}
+
 Array.prototype.in_array = function(test_var) { // useful method for "class" Array
     return this.indexOf(test_var, 0) != -1;
 }
@@ -268,9 +293,9 @@ Scheduler.prototype.add_recurrence_rules = function(rfc_rrule) {
     if (!this.rrule_byday && !this.rrule_bymonthday && !this.rrule_byyearday && (this.rrule_freq == "MONTHLY" || this.rrule_freq == "YEARLY")) {
         this.rrule_bymonthday = [ this.start_date.getDate().toString() ];
     }
-//    if (!this.rrule_bymonth && (this.rrule_freq == "YEARLY")) {
-//        this.rrule_bymonth = [ (this.start_date.getMonth() + 1).toString() ];
-//    }
+    if (!this.rrule_byday && !this.rrule_byyearday && !this.rrule_bymonth && this.rrule_freq == "YEARLY") {
+        this.rrule_bymonth = [ (this.start_date.getMonth() + 1).toString() ];
+    }
 }
 
 // removes all RRULEs
