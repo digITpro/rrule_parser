@@ -10,7 +10,7 @@
 var d = new Date(2011, 10, 15, 19, 18, 00); // tue 15/11/2011 19:18
 var scheduler = new Scheduler(d, "RRULE:FREQ=DAILY;UNTIL=20111231T090000Z", true); // sat 31/12/2011 09:00
 console.assert(scheduler.rrule_freq == "DAILY");
-console.assert(scheduler.rrule_until == (new Date(2011, 11, 31, 9, 0, 0)).getTime());
+console.assert(scheduler.rrule_until.getTime() == (new Date(2011, 11, 31, 9, 0, 0)).getTime());
 console.assert(scheduler.rrule_interval == 1);
 console.assert(scheduler.rrule_bysecond.in_array("0"));
 console.assert(scheduler.rrule_byminute.in_array("18"));
